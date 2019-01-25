@@ -11,9 +11,13 @@ This is Week 3 [Skill Distillery](http://skilldistillery.com) weekend homework.
 * Object-oriented design
   * Polymorphism
   * Inheritance
-  * Abstraction
   * Encapsulation
 * UML
-*Generics & Arraylists
+* Generics & Arraylists
+* Enumerated Types
+* Exceptions
+* Collection Framework
+
+
 
 
