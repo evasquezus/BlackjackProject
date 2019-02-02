@@ -28,7 +28,7 @@ public class Dealer extends Participant {
 	}
 	
 
-	public int 	remainingCards() {
+	public int remainingCards() {
 		return deck.checkDeckSize();
 	}
 
