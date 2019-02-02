@@ -1,17 +1,23 @@
 package com.skilldistillery.blackjack;
 
-import com.skilldistillery.cards.common.*;
+import java.util.List;
+
+import com.skilldistillery.cards.common.Card;
+import com.skilldistillery.cards.common.Deck;
+import com.skilldistillery.cards.common.Hand;
 
 public class Dealer extends Participant {
 
 	private Deck deck;
 	private BlackJackHand dealerHand;
 	private Dealer dealer;
+	private Hand dealerHandd;
 
 	public Dealer() {
 		deck = new Deck();
 		this.dealerHand = new BlackJackHand();
 		this.deck.shuffle();
+		dealerHandd = new Hand();
 	}
 
 	public void addCardToHand(Card card) {
@@ -34,14 +40,26 @@ public class Dealer extends Participant {
 
 	@Override
 	void checkForBlackJack() {
-		if (dealer.getDealerHand().getHandValue() >= 21) {
+		if (getDealerHand().getHandValue() == 21) {
 			System.out.println("Dealer has busted");
 		}
 	}
 
 	void checkIfDealerShouldHit() {
-		if (dealer.getDealerHand().getHandValue() < 17) {
+		if (getDealerHand().getHandValue() < 17) {
 			dealer.dealCard();
+		}
+	}
+	public void showDealerHand(List<Card> cardTakenByDealer) {
+		int counter = 0;
+		for (Card card : cardTakenByDealer) {
+			if(counter == 0) {
+				System.out.println("Hidden Card");
+			}
+			else {
+				System.out.println(card.toString());
+			}
+			counter++;
 		}
 	}
 

@@ -28,52 +28,76 @@ public class BlackJackGame extends Hand {
 		Player player = new Player();
 		Dealer dealer = new Dealer();
 
+		System.out.println(" \nDealer will start dealing hands \n");
 		player.addCardToHand(dealer.dealCard());
+		totalForCurrentHand = player.getValue();
+		System.out.println("Dealer dealt first card current hand total is: " + totalForCurrentHand);
 		dealer.addCardToHand(dealer.dealCard());
 		player.addCardToHand(dealer.dealCard());
-		dealer.addCardToHand(dealer.dealCard());
+		totalForCurrentHand = player.getValue();
+		System.out.println("Dealer dealt second card current hand total is: " + totalForCurrentHand + "\n");
+		if (totalForCurrentHand == 21) {
+			determineWhoHasWon(dealer, player);
 
-		dealer.checkForBlackJack();
-		player.checkForBlackJack();
+		} else if (dealer.getDealerHand().getHandValue() == 21) {
+			determineWhoHasWon(dealer, player);
 
-		while (totalForCurrentHand < 21) {
-			System.out.println("Which option do you want to take \n (1) to hit (2) \n to stand");
-			int userChoice = kb.nextInt();
-			switch (userChoice) {
-			case 1:
-				System.out.println("You have decided to hit ");
-				player.addCardToHand(dealer.dealCard());
-				totalForCurrentHand = player.getValue();
-				System.out.println("Your current hand value is " + totalForCurrentHand);
-				System.out.println("Which option do you want to take \n (1) to hit (2) \n to stand");
+		} else {
 
-				break;
-			case 2:
-				System.out.println("You have decided to stand the value of your card ");
-				System.out.println("Your current hand value is " + totalForCurrentHand);
-				break;
+			dealer.addCardToHand(dealer.dealCard());
+			boolean continueGame = true;
+			while (totalForCurrentHand < 21 && continueGame) {
+				System.out.println(" \n " + "Which option do you want to take \n" + "(1) to hit (2) to stand");
+				int userChoice = kb.nextInt();
+				switch (userChoice) {
+				case 1:
+					System.out.println(" You have decided to hit ");
+					player.addCardToHand(dealer.dealCard());
+					totalForCurrentHand = player.getValue();
+					System.out.println(" Your current hand value is " + totalForCurrentHand);
+					break;
+				case 2:
+					System.out.println(" You have decided to stand the value of your hand is: " + totalForCurrentHand);
+					ifDealerOver21DetermineHit(dealer, kb);
+					determineWhoHasWon(dealer, player);
+					continueGame = false;
+					if(continueGame) {
+					}
+					break;
+				}
 			}
-		}
 
-	}
-
-	public void ifDealerOver21DetermineHitOrStand(Dealer blackDealer, Scanner kb) {
-		if (blackDealer.getDealerHand().getHandValue() < 17) {
-			int dealerHandValue = blackDealer.getDealerHand().getHandValue();
-			System.out.println("Current value of dealer hand is " + dealerHandValue);
-			dealerHit();
 		}
 	}
 
-	public int determineWhoHasWon(Dealer blackdealer, Player player) {
-		int totalForDealer = blackdealer.getDealerHand().getHandValue();
+	public void ifDealerOver21DetermineHit(Dealer dealer, Scanner kb) {
+		int dealerHandValue = dealer.getDealerHand().getHandValue();
+		while (dealer.getDealerHand().getHandValue() < 17) {
+			dealerHandValue = dealer.getDealerHand().getHandValue();
+			System.out.println("Current value of dealer hand is " + dealerHandValue + "\n");
+			dealer.addCardToHand(dealer.dealCard());
+			dealerHandValue = dealer.getDealerHand().getHandValue();
+		}
+		System.out.println("Dealer adds card current value of dealer hand is " + dealerHandValue + "\n");
+	}
+
+	public int determineWhoHasWon(Dealer dealer, Player player) {
+		int totalForDealer = dealer.getDealerHand().getHandValue();
 		int totalForPlayer = player.getValue();
-		if (totalForDealer < totalForPlayer) {
+		if (totalForDealer > 21) {
+			playerWins();
+		} else if (totalForPlayer > 21) {
+			dealerWins();
+		} else if (totalForDealer > totalForPlayer) {
+			dealerWins();
+		} else if (totalForPlayer > totalForDealer) {
 			playerWins();
 		} else {
-			dealerWins();
+			totalForPlayer = totalForDealer;
+			System.out.println("Tied scores");
+
 		}
-		return 0;
+		return totalForDealer;
 
 	}
 

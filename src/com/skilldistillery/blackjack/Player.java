@@ -1,17 +1,16 @@
 package com.skilldistillery.blackjack;
 
-import java.util.List;
-import com.skilldistillery.cards.common.*;
-
-import com.skilldistillery.cards.common.*;
+import com.skilldistillery.cards.common.Card;
+import com.skilldistillery.cards.common.Hand;
 
 public class Player extends Participant {
 
 	private Hand playerHand;;
-	private BlackJackHand playerhand;
+	private BlackJackHand checkForBlackJackHand;
 
 	public Player() {
-		playerHand = new BlackJackHand();
+		playerHand = new Hand();
+		
 	}
 
 	public void addCardToHand(Card card) {
@@ -29,8 +28,7 @@ public class Player extends Participant {
 
 	@Override
 	void checkForBlackJack() {
-		if (playerhand.getHandValue() > 21) {
-			playerhand.clearCurrentHand();
+		if (playerHand.getHandValue() == 21) {
 			System.out.println("You won");
 		}
 	}

@@ -6,12 +6,12 @@ import java.util.List;
 
 import com.skilldistillery.blackjack.Dealer;
 
-public abstract class Hand {
+public class Hand {
 
-	private List<Card> hand;
+	private List<Card> hand = new ArrayList<Card>();;
 
 	public Hand() {
-		List<Card> hand = new ArrayList<Card>();
+
 	}
 
 	public int checkDeckSize(Card e) {
