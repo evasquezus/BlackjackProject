@@ -61,7 +61,7 @@ public class BlackJackGame extends Hand {
 					ifDealerOver21DetermineHit(dealer, kb);
 					determineWhoHasWon(dealer, player);
 					continueGame = false;
-					if(continueGame) {
+					if (continueGame) {
 					}
 					break;
 				}
@@ -101,10 +101,6 @@ public class BlackJackGame extends Hand {
 
 	}
 
-	public void getCounterOfHards() {
-
-	}
-
 	public int checkValueOfHand() {
 		return getHandValue();
 	}
@@ -117,14 +113,6 @@ public class BlackJackGame extends Hand {
 	public boolean dealerWins() {
 		System.out.println("Dealer wins");
 		return true;
-	}
-
-	public void playerHit() {
-
-	}
-
-	public void dealerHit() {
-
 	}
 
 }

@@ -11,13 +11,12 @@ public class Dealer extends Participant {
 	private Deck deck;
 	private BlackJackHand dealerHand;
 	private Dealer dealer;
-	private Hand dealerHandd;
 
 	public Dealer() {
 		deck = new Deck();
 		this.dealerHand = new BlackJackHand();
 		this.deck.shuffle();
-		dealerHandd = new Hand();
+		new Hand();
 	}
 
 	public void addCardToHand(Card card) {
@@ -32,7 +31,6 @@ public class Dealer extends Participant {
 	public BlackJackHand getDealerHand() {
 		return dealerHand;
 	}
-	
 
 	public int remainingCards() {
 		return deck.checkDeckSize();
@@ -50,13 +48,13 @@ public class Dealer extends Participant {
 			dealer.dealCard();
 		}
 	}
+
 	public void showDealerHand(List<Card> cardTakenByDealer) {
 		int counter = 0;
 		for (Card card : cardTakenByDealer) {
-			if(counter == 0) {
+			if (counter == 0) {
 				System.out.println("Hidden Card");
-			}
-			else {
+			} else {
 				System.out.println(card.toString());
 			}
 			counter++;

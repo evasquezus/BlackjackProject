@@ -1,5 +1,4 @@
 package com.skilldistillery.blackjack;
-import com.skilldistillery.cards.common.*;
 
 import java.util.List;
 
@@ -11,10 +10,9 @@ public class BlackJackHand extends Hand {
 	public void showDealerHand(List<Card> cardTakenByDealer) {
 		int counter = 0;
 		for (Card card : cardTakenByDealer) {
-			if(counter == 0) {
+			if (counter == 0) {
 				System.out.println("Hidden Card");
-			}
-			else {
+			} else {
 				System.out.println(card.toString());
 			}
 			counter++;

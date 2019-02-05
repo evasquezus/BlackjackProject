@@ -6,19 +6,14 @@ import com.skilldistillery.cards.common.Hand;
 public class Player extends Participant {
 
 	private Hand playerHand;;
-	private BlackJackHand checkForBlackJackHand;
 
 	public Player() {
 		playerHand = new Hand();
-		
+
 	}
 
 	public void addCardToHand(Card card) {
 		playerHand.addCard(card);
-	}
-
-	public void setValue(int amount) {
-
 	}
 
 	public int getValue() {
